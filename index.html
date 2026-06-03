@@ -1,662 +1,652 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    *{ box-sizing:border-box; }
-
-    body{
-      margin:0;
-      padding:42px 18px 56px;
-      min-height:100vh;
-      background:
-        radial-gradient(circle at top, rgba(255,248,232,0.95), transparent 34%),
-        linear-gradient(180deg, #efe3cc 0%, #f7f0e3 48%, #e8d6b8 100%);
-      font-family:Georgia, serif;
-      text-align:center;
-      color:#3a2d1f;
-    }
-
-    .wrap{
-      max-width:720px;
-      margin:0 auto;
-    }
-
-    .intro{
-      max-width:620px;
-      margin:0 auto 24px;
-      font-size:18px;
-      line-height:1.55;
-      opacity:0.84;
-    }
-
-    button{
-      margin-top:16px;
-      padding:20px 42px;
-      border:none;
-      border-radius:18px;
-      background:#3a2d1f;
-      color:white;
-      font-size:24px;
-      font-weight:bold;
-      cursor:pointer;
-      font-family:Georgia, serif;
-      box-shadow:0 12px 28px rgba(58,45,31,0.18);
-    }
-
-    button:hover{ opacity:0.92; }
-
-    button:disabled{
-      opacity:0.65;
-      cursor:not-allowed;
-    }
-
-    #card{
-      margin-top:34px;
-      padding:26px 18px 30px;
-      border-radius:30px;
-      background:rgba(255,255,255,0.28);
-      box-shadow:0 18px 45px rgba(58,45,31,0.16);
-      display:none;
-    }
-
-    #card img{
-      width:320px;
-      max-width:92%;
-      border-radius:18px;
-      box-shadow:0 8px 20px rgba(58,45,31,0.16);
-      transition:transform 0.12s ease, opacity 0.12s ease;
-    }
-
-    .shuffle img{
-      transform:scale(0.98);
-      opacity:0.82;
-    }
-
-    h2{
-      margin:22px 0 10px;
-      font-size:28px;
-      letter-spacing:0.04em;
-    }
-
-    .meaning{
-      max-width:560px;
-      margin:0 auto;
-      font-size:18px;
-      line-height:1.65;
-      opacity:0.9;
-    }
-
-    .services{
-      margin:32px auto 0;
-      padding:24px 22px;
-      max-width:600px;
-      border-radius:24px;
-      background:rgba(255,255,255,0.32);
-      box-shadow:0 10px 28px rgba(58,45,31,0.10);
-      text-align:left;
-    }
-
-    .services h3{
-      margin:0 0 14px;
-      text-align:center;
-      font-size:22px;
-    }
-
-    .services h4{
-      margin:18px 0 6px;
-      font-size:18px;
-    }
-
-    .services p{
-      margin:0;
-      font-size:16px;
-      line-height:1.55;
-      opacity:0.86;
-    }
-
-    .services a{
-      display:inline-block;
-      margin-top:8px;
-      color:#3a2d1f;
-      font-weight:bold;
-      text-decoration:underline;
-    }
-
-    .note{
-      margin-top:20px;
-      font-size:14px;
-      opacity:0.68;
-    }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+ *{ box-sizing:border-box; }
+ body{
+ margin:0;
+ padding:42px 18px 56px;
+ min-height:100vh;
+ background:
+ radial-gradient(circle at top, rgba(255,248,232,0.95), transparent 34%),
+ linear-gradient(180deg, #efe3cc 0%, #f7f0e3 48%, #e8d6b8 100%);
+ font-family:Georgia, serif;
+ text-align:center;
+ color:#3a2d1f;
+ }
+ .wrap{
+ max-width:720px;
+ margin:0 auto;
+ }
+ .intro{
+ max-width:620px;
+ margin:0 auto 24px;
+ font-size:18px;
+ line-height:1.55;
+ opacity:0.84;
+ }
+ button{
+ margin-top:16px;
+ padding:20px 42px;
+ border:none;
+ border-radius:18px;
+ background:#3a2d1f;
+ color:white;
+ font-size:24px;
+ font-weight:bold;
+ cursor:pointer;
+ font-family:Georgia, serif;
+ box-shadow:0 12px 28px rgba(58,45,31,0.18);
+ }
+ button:hover{ opacity:0.92; }
+ button:disabled{
+ opacity:0.65;
+ cursor:not-allowed;
+ }
+ #card{
+ margin-top:34px;
+ padding:26px 18px 30px;
+ border-radius:30px;
+ background:rgba(255,255,255,0.28);
+ box-shadow:0 18px 45px rgba(58,45,31,0.16);
+ display:none;
+ }
+ #card img{
+ width:320px;
+ max-width:92%;
+ border-radius:18px;
+ box-shadow:0 8px 20px rgba(58,45,31,0.16);
+ transition:transform 0.12s ease, opacity 0.12s ease;
+ }
+ .shuffle img{
+ transform:scale(0.98);
+ opacity:0.82;
+ }
+ h2{
+ margin:22px 0 10px;
+ font-size:28px;
+ letter-spacing:0.04em;
+ }
+ .meaning{
+ max-width:560px;
+ margin:0 auto;
+ font-size:18px;
+ line-height:1.65;
+ opacity:0.9;
+ }
+ .services{
+ margin:32px auto 0;
+ padding:24px 22px;
+ max-width:600px;
+ border-radius:24px;
+ background:rgba(255,255,255,0.32);
+ box-shadow:0 10px 28px rgba(58,45,31,0.10);
+ text-align:left;
+ }
+ .services h3{
+ margin:0 0 14px;
+ text-align:center;
+ font-size:22px;
+ }
+ .services h4{
+ margin:18px 0 6px;
+ font-size:18px;
+ }
+ .services p{
+ margin:0;
+ font-size:16px;
+ line-height:1.55;
+ opacity:0.86;
+ }
+ .services a{
+ display:inline-block;
+ margin-top:8px;
+ color:#3a2d1f;
+ font-weight:bold;
+ text-decoration:underline;
+ }
+ .note{
+ margin-top:20px;
+ font-size:14px;
+ opacity:0.68;
+ }
 @keyframes pulseCard{
-  from{
-    transform:translateY(0) rotate(-1deg);
-    opacity:0.82;
-  }
-  to{
-    transform:translateY(-8px) rotate(1deg);
-    opacity:1;
-  }
+ from{
+ transform:translateY(0) rotate(-1deg);
+ opacity:0.82;
+ }
+ to{
+ transform:translateY(-8px) rotate(1deg);
+ opacity:1;
+ }
 }
-   @media(max-width:480px){
-  body{
-    padding:18px 6px 28px;
-    overflow-x:hidden;
-  }
-
-  button{
-    font-size:18px;
-    padding:15px 24px;
-    max-width:92%;
-  }
-
-  #card{
-    margin-top:22px;
-    padding:16px 6px 22px;
-    border-radius:22px;
-    width:100%;
-    max-width:100%;
-    overflow:hidden;
-  }
-
-  #card img{
-    width:230px;
-    max-width:82%;
-    border-radius:14px;
-  }
-
-  h2{ font-size:23px; }
-
-  .meaning{
-    font-size:16px;
-    max-width:92%;
-  }
-
-  #shareButton{
-    font-size:18px !important;
-    padding:15px 24px !important;
-    max-width:92%;
-    display:inline-block;
-  }
+ @media(max-width:480px){
+ body{
+ padding:18px 6px 28px;
+ overflow-x:hidden;
+ }
+ button{
+ font-size:18px;
+ padding:15px 24px;
+ max-width:92%;
+ }
+ #card{
+ margin-top:22px;
+ padding:16px 6px 22px;
+ border-radius:22px;
+ width:100%;
+ max-width:100%;
+ overflow:hidden;
+ }
+ #card img{
+ width:230px;
+ max-width:82%;
+ border-radius:14px;
+ }
+ h2{ font-size:23px; }
+ .meaning{
+ font-size:16px;
+ max-width:92%;
+ }
+ #shareButton{
+ font-size:18px !important;
+ padding:15px 24px !important;
+ max-width:92%;
+ display:inline-block;
+ }
 }
-  </style>
+ </style>
 </head>
-
 <body>
-  <div class="wrap">
-
-    <p class="intro" style="font-size:16px; max-width:560px; opacity:0.75;">
-  Antes de iniciar o sorteio, faça uma breve pausa.<br><br>
-
-  Se desejar, conecte-se à sua intuição, espiritualidade, guias, mentores, anjo da guarda ou ao universo da forma que fizer sentido para você.<br><br>
-
-  Peça por clareza para o seu dia e então observe a carta que surgir.
+ <div class="wrap">
+ <p class="intro" style="font-size:16px; max-width:560px; opacity:0.75;">
+ Before beginning the draw, take a brief pause.<br><br>
+ If you wish, connect with your intuition, spirituality, guides, mentors, guardian angel, or the universe in whatever way feels meaningful to you.<br><br>
+ Ask for clarity for your day, then observe the card that appears.
 </p>
 
-  <button id="drawButton" onclick="sortearCarta()">Iniciar Sorteio</button>
+ <button id="drawButton" onclick="sortearCarta()">Start Draw</button>
 
 <div id="card"></div>
 
 <div id="shareMessage" style="display:none;margin:18px 0 10px 0;font-size:18px;line-height:1.6;">
-  <strong>Gostou do resultado?</strong><br>
-  Compartilhe com alguém e descubra qual será a tendência dela hoje.
+ <strong>Did this result resonate with you?</strong><br>
+ Share it with someone and let them discover what may unfold for them today.
 </div>
 
 <a id="shareButton" href="#" target="_top"
 style="display:none;margin-top:12px;padding:20px 42px;border-radius:18px;background:#3a2d1f;color:white;font-size:24px;font-weight:bold;font-family:Georgia,serif;text-decoration:none;box-shadow:0 12px 28px rgba(58,45,31,0.18);">
-  Compartilhar Resultado
+ Share Result
 </a>
 
-<p class="note">Sorteie apenas uma carta por dia.</p>
-  </div>
+<p class="note">Draw only one card per day.</p>
 
-  <script>
-        const cartas = [
+ </div>
+
+ <script>
+ const cartas = [
   {
-    imagem:"01_clareza.png",
-    titulo:"CLAREZA",
-    significado:"Hoje pode surgir uma compreensão, informação ou percepção que ajude a esclarecer algo que vinha parecendo confuso. Observe situações que tragam mais lucidez ao longo do dia.",
-    observacoes:[
-  "conversas esclarecedoras",
-  "informações novas",
-  "mudanças de perspectiva"
-]
-  },
+ imagem:"01_clarity.png",
+ titulo:"CLARITY",
+ significado:"Today may bring understanding, information, or insight that helps clarify something that has seemed confusing. Pay attention to situations that bring greater awareness throughout the day.",
+ observacoes:[
+ "clarifying conversations",
+ "new information",
+ "shifts in perspective"
+ ]
+},
+{
+ imagem:"02_relief.png",
+ titulo:"RELIEF",
+ significado:"Today there may be a tendency for something to feel less heavy. A tension, concern, or pressure may lose strength, allowing more space to breathe within a situation.",
+ observacoes:[
+ "easing tension",
+ "resolved situations",
+ "sense of lightness"
+ ]
+},
+{
+ imagem:"03_rest.png",
+ titulo:"REST",
+ significado:"Today may bring a need for pause, retreat, or recovery. Notice whether your body, mind, or circumstances are asking for less effort and greater preservation of energy.",
+ observacoes:[
+ "need for rest",
+ "energy recovery",
+ "slower pace"
+ ]
+},
+{
+ imagem:"04_connection.png",
+ titulo:"CONNECTION",
+ significado:"Today there may be a tendency toward meaningful interactions, conversations, or bonds becoming stronger. Notice who shows up and which exchanges feel genuine.",
+ observacoes:[
+ "important connections",
+ "meaningful conversations",
+ "authentic exchanges"
+ ]
+},
+{
+ imagem:"05_flow.png",
+ titulo:"FLOW",
+ significado:"Today something may move more naturally than expected. Situations that felt rigid may find an easier path, especially when there is less need for control.",
+ observacoes:[
+ "less resistance",
+ "natural solutions",
+ "adapting to change"
+ ]
+},
+{
+ imagem:"06_openness.png",
+ titulo:"OPENNESS",
+ significado:"Today may bring an opportunity, invitation, idea, or shift in perception. Notice symbolic doors opening, even if they seem small at first.",
+ observacoes:[
+ "new possibilities",
+ "unexpected invitations",
+ "fresh perspectives"
+ ]
+},
+{
+ imagem:"07_stability.png",
+ titulo:"STABILITY",
+ significado:"Today there may be a tendency to seek stronger foundations, security, or organization. Situations may call for simple, sustainable, and grounded choices.",
+ observacoes:[
+ "organization",
+ "emotional security",
+ "consistent decisions"
+ ]
+},
+{
+ imagem:"08_alignment.png",
+ titulo:"ALIGNMENT",
+ significado:"Today something may begin to fit together more naturally. Notice whether decisions, conversations, or perceptions are pointing toward a clearer direction.",
+ observacoes:[
+ "coherent choices",
+ "clear direction",
+ "sense of alignment"
+ ]
+},
+{
+ imagem:"09_motivation.png",
+ titulo:"MOTIVATION",
+ significado:"Today may bring a small boost of energy, motivation, or willingness to continue. It does not need to be dramatic; sometimes motivation appears through simple actions.",
+ observacoes:[
+ "renewed motivation",
+ "desire to act",
+ "small steps forward"
+ ]
+},
+{
+ imagem:"10_support.png",
+ titulo:"SUPPORT",
+ significado:"Today there may be a tendency toward support, help, or meaningful presence. Notice whether a person, situation, or inner decision provides greater stability.",
+ observacoes:[
+ "help available",
+ "supportive people",
+ "emotional support"
+ ]
+},
+{
+ imagem:"11_observation.png",
+ titulo:"OBSERVATION",
+ significado:"Today there may be value in noticing important details before taking action. Observe more, react less, and pay attention to subtle signals around you.",
+ observacoes:[
+ "important details",
+ "repeating patterns",
+ "subtle signs"
+ ]
+},
+{
+ imagem:"12_sensitivity.png",
+ titulo:"SENSITIVITY",
+ significado:"Today emotional, energetic, or relational sensitivity may be heightened. Notice environments, words, and interactions that affect you more deeply.",
+ observacoes:[
+ "heightened emotions",
+ "impactful environments",
+ "greater awareness"
+ ]
+},
+{
+ imagem:"13_reflection.png",
+ titulo:"REFLECTION",
+ significado:"Today may bring a need to look inward or reconsider something. Situations may call for more pause, analysis, and inner listening before responding.",
+ observacoes:[
+ "need for reflection",
+ "reviewing choices",
+ "moments of introspection"
+ ]
+},
+{
+ imagem:"14_transition.png",
+ titulo:"TRANSITION",
+ significado:"Today there may be a tendency toward a shift in phase, a subtle turning point, or movement between two states. Notice what is no longer remaining the same.",
+ observacoes:[
+ "changes underway",
+ "gradual endings",
+ "adjusting to the new"
+ ]
+},
+{
+ imagem:"15_anticipation.png",
+ titulo:"ANTICIPATION",
+ significado:"Today there may be a tendency to wait for answers, signs, or confirmations. Notice whether anticipation supports hope or begins to create anxiety.",
+ observacoes:[
+ "waiting for answers",
+ "anticipating events",
+ "focus on the future"
+ ]
+},
+{
+ imagem:"16_movement.png",
+ titulo:"MOVEMENT",
+ significado:"Today there may be a tendency toward action, progress, or a shift in attitude. Something may require movement, even if it is small or entirely internal.",
+ observacoes:[
+ "things moving forward",
+ "changes in pace",
+ "progress or travel"
+ ]
+},
+{
+ imagem:"17_change.png",
+ titulo:"CHANGE",
+ significado:"Today may bring a change in perception, direction, or circumstance. Notice situations that suggest something new is asking for space.",
+ observacoes:[
+ "unexpected changes",
+ "new directions",
+ "need for adaptation"
+ ]
+},
+{
+ imagem:"18_perception.png",
+ titulo:"PERCEPTION",
+ significado:"Today there may be a tendency to notice something beyond the obvious. Pay attention to signs, sensations, and details that deepen your understanding.",
+ observacoes:[
+ "important realizations",
+ "previously ignored signs",
+ "new interpretations"
+ ]
+},
   {
-    imagem:"02_alivio.png",
-    titulo:"ALÍVIO",
-    significado:"Hoje pode haver tendência de algo parecer menos pesado. Uma tensão, preocupação ou cobrança pode perder força, permitindo mais respiro diante de uma situação.",
-   observacoes:[
-  "tensões diminuindo",
-  "situações resolvidas",
-  "sensação de leveza"
-]
-  },
+ imagem:"19_silence.png",
+ titulo:"SILENCE",
+ significado:"Today there may be a tendency toward silence, retreat, or the absence of immediate answers. Notice what reveals itself when there is less speaking and more listening.",
+ observacoes:[
+ "fewer external answers",
+ "space for inner listening",
+ "need for observation"
+ ]
+},
+{
+ imagem:"20_help.png",
+ titulo:"HELP",
+ significado:"Today may bring a need to ask for, offer, or accept help. Situations may show that not everything needs to be carried alone.",
+ observacoes:[
+ "support available",
+ "useful guidance",
+ "collaboration from others"
+ ]
+},
+{
+ imagem:"21_overload.png",
+ titulo:"OVERLOAD",
+ significado:"Today there may be a tendency toward excess tasks, responsibilities, or stimulation. Notice where something begins to occupy more space than it should.",
+ observacoes:[
+ "too many demands",
+ "accumulated responsibilities",
+ "signs of strain"
+ ]
+},
+{
+ imagem:"22_pressure.png",
+ titulo:"PRESSURE",
+ significado:"Today there may be a tendency toward external or internal pressure. Notice situations where you feel pushed to respond, decide, or act before you are ready.",
+ observacoes:[
+ "external demands",
+ "excessive urgency",
+ "need for boundaries"
+ ],
+ recomendacao:"Periods of pressure can influence decisions, professional performance, and strategic clarity."
+},
+{
+ imagem:"23_confusion.png",
+ titulo:"CONFUSION",
+ significado:"Today there may be a tendency toward doubt, mixed information, or difficulty choosing a direction. Notice whether too many voices, options, or thoughts are interfering with clarity.",
+ observacoes:[
+ "contradictory information",
+ "difficulty making decisions",
+ "lack of clarity"
+ ]
+},
+{
+ imagem:"24_misunderstanding.png",
+ titulo:"MISUNDERSTANDING",
+ significado:"Today there may be a tendency toward communication issues, misinterpretations, or different expectations between people. Pay attention to conversations that may create confusion.",
+ observacoes:[
+ "communication difficulties",
+ "different interpretations",
+ "need for clarification"
+ ],
+ recomendacao:"This tendency may be linked to emotional noise, differing expectations, or recurring communication patterns in relationships."
+},
+{
+ imagem:"25_fatigue.png",
+ titulo:"FATIGUE",
+ significado:"Today there may be a tendency toward weariness, excessive effort, or a sense of accumulated weight. Notice situations that require more energy than usual.",
+ observacoes:[
+ "too many tasks",
+ "accumulated commitments",
+ "need for rest"
+ ]
+},
+{
+ imagem:"26_distance.png",
+ titulo:"DISTANCE",
+ significado:"Today there may be a tendency toward separation, silence, or a feeling of disconnection. Notice whether someone or something seems more distant, physically or emotionally.",
+ observacoes:[
+ "temporary separation",
+ "need for space",
+ "reduced contact"
+ ],
+ recomendacao:"Themes related to relationships, closeness, or distance may become more noticeable within this tendency."
+},
+{
+ imagem:"27_impulsiveness.png",
+ titulo:"IMPULSIVENESS",
+ significado:"Today there may be a tendency toward quick reactions, rushed decisions, or impulsive words. Pause before acting so you do not respond only to the moment.",
+ observacoes:[
+ "quick reactions",
+ "hasty decisions",
+ "lack of reflection"
+ ]
+},
+{
+ imagem:"28_frustration.png",
+ titulo:"FRUSTRATION",
+ significado:"Today there may be a tendency for something not to unfold as expected. Notice where expectations, plans, or desires encounter resistance and need adjustment.",
+ observacoes:[
+ "unmet expectations",
+ "interrupted plans",
+ "need for adjustment"
+ ]
+},
+{
+ imagem:"29_anxiety.png",
+ titulo:"ANXIETY",
+ significado:"Today there may be a tendency toward anticipation, excessive concern, or thoughts focused on the future. Notice when the mind tries to move faster than the present moment.",
+ observacoes:[
+ "anticipatory worries",
+ "need for control",
+ "imagined scenarios"
+ ],
+ recomendacao:"There may be emotional patterns behind this tendency that deserve deeper observation."
+},
+{
+ imagem:"30_insecurity.png",
+ titulo:"INSECURITY",
+ significado:"Today there may be a tendency toward self-doubt, uncertainty about a decision, or hesitation about the path ahead. Notice whether fear is amplifying the situation.",
+ observacoes:[
+ "self-doubt",
+ "fear of making mistakes",
+ "search for validation"
+ ],
+ recomendacao:"This tendency may point toward inner doubts, weakened self-confidence, or a need for more structured emotional support."
+},
+{
+ imagem:"31_discomfort.png",
+ titulo:"DISCOMFORT",
+ significado:"Today there may be a tendency toward physical, emotional, or energetic discomfort. Notice environments, relationships, or situations that create tension or unease.",
+ observacoes:[
+ "emotional discomfort",
+ "draining environments",
+ "signs of tension"
+ ],
+ recomendacao:"When discomfort appears, it may be important to understand what is affecting your emotional, energetic, or relational state."
+},
   {
-    imagem:"3_descanso.png",
-    titulo:"DESCANSO",
-    significado:"Hoje pode surgir necessidade de pausa, recolhimento ou recuperação. Observe se o corpo, a mente ou as circunstâncias pedem menos esforço e mais preservação de energia.",
-  observacoes:[
-  "necessidade de pausa",
-  "recuperação de energia",
-  "redução do ritmo"
-]
-  },
-  {
-    imagem:"04_conexao.png",
-    titulo:"CONEXÃO",
-    significado:"Hoje pode haver tendência a aproximações, conversas ou vínculos que se fortalecem. Observe quem se faz presente e quais trocas parecem mais verdadeiras.",
-    observacoes:[
-  "aproximações importantes",
-  "conversas significativas",
-  "trocas verdadeiras"
-]
-  },
-  {
-    imagem:"05_fluidez.png",
-    titulo:"FLUIDEZ",
-    significado:"Hoje pode haver tendência de algo fluir com mais naturalidade. Situações que estavam rígidas podem encontrar um caminho mais leve, especialmente quando há menos controle.",
-    observacoes:[
-  "menos resistência",
-  "soluções naturais",
-  "adaptação às mudanças"
-]
-  },
-  {
-    imagem:"06_abertura.png",
-    titulo:"ABERTURA",
-    significado:"Hoje pode surgir uma possibilidade, convite, ideia ou mudança de percepção. Observe portas simbólicas que se apresentam, mesmo que pareçam pequenas no início.",
-    observacoes:[
-  "novas possibilidades",
-  "convites inesperados",
-  "novos pontos de vista"
-]
-  },
-  {
-    imagem:"07_estabilidade.png",
-    titulo:"ESTABILIDADE",
-    significado:"Hoje pode haver tendência de buscar mais base, segurança ou organização. Situações podem pedir escolhas mais firmes, simples e sustentáveis.",
-    observacoes:[
-  "organização",
-  "segurança emocional",
-  "decisões consistentes"
-]
-  },
-  {
-    imagem:"08_alinhamento.png",
-    titulo:"ALINHAMENTO",
-    significado:"Hoje pode haver tendência de algo se encaixar melhor. Observe se decisões, conversas ou percepções começam a apontar para uma direção mais coerente.",
-    observacoes:[
-  "coerência nas escolhas",
-  "clareza de direção",
-  "sensação de encaixe"
-]
-  },
-  {
-    imagem:"09_animo.png",
-    titulo:"ÂNIMO",
-    significado:"Hoje pode surgir um pequeno impulso de energia, motivação ou vontade de continuar. Não precisa ser algo grande; às vezes o ânimo aparece em movimentos simples.",
-    observacoes:[
-  "motivação renovada",
-  "vontade de agir",
-  "pequenos avanços"
-]
-  },
-  {
-    imagem:"10_apoio.png",
-    titulo:"APOIO",
-    significado:"Hoje pode haver tendência de apoio, ajuda ou presença significativa. Observe se alguém, alguma situação ou até uma decisão interna oferece mais sustentação.",
-    observacoes:[
-  "ajuda disponível",
-  "presença de aliados",
-  "suporte emocional"
-]
-  },
-  {
-    imagem:"11_observacao.png",
-    titulo:"OBSERVAÇÃO",
-    significado:"Hoje pode haver tendência de perceber detalhes importantes antes de agir. Observe mais, reaja menos e preste atenção aos sinais sutis das situações.",
-    observacoes:[
-  "detalhes importantes",
-  "padrões recorrentes",
-  "sinais sutis"
-]
-  },
-  {
-    imagem:"12_sensibilidade.png",
-    titulo:"SENSIBILIDADE",
-    significado:"Hoje pode haver maior sensibilidade emocional, energética ou relacional. Observe ambientes, palavras e interações que possam afetar você com mais intensidade.",
-    observacoes:[
-  "emoções intensificadas",
-  "ambientes impactantes",
-  "maior percepção"
-]
-  },
-  {
-    imagem:"13_reflexao.png",
-    titulo:"REFLEXÃO",
-    significado:"Hoje pode surgir necessidade de olhar para dentro ou reconsiderar algo. Situações do dia podem pedir mais pausa, análise e escuta interna antes de uma resposta.",
-    observacoes:[
-  "necessidade de análise",
-  "revisão de escolhas",
-  "momentos de introspecção"
-]
-  },
-  {
-    imagem:"14_transicao.png",
-    titulo:"TRANSIÇÃO",
-    significado:"Hoje pode haver tendência de mudança de fase, virada sutil ou passagem entre dois estados. Observe o que parece estar deixando de ser como antes.",
-    observacoes:[
-  "mudanças em andamento",
-  "encerramentos graduais",
-  "adaptação ao novo"
-]
-  },
-  {
-    imagem:"15_expectativa.png",
-    titulo:"EXPECTATIVA",
-    significado:"Hoje pode haver tendência de esperar respostas, sinais ou confirmações. Observe se a expectativa ajuda a manter esperança ou se começa a gerar ansiedade.",
-    observacoes:[
-  "aguardo por respostas",
-  "antecipação de acontecimentos",
-  "atenção ao futuro"
-]
-  },
-  {
-    imagem:"16_movimento.png",
-    titulo:"MOVIMENTO",
-    significado:"Hoje pode haver tendência de deslocamento, ação ou mudança de postura. Algo pode pedir movimento, mesmo que seja pequeno ou apenas interno.",
-    observacoes:[
-  "ações acontecendo",
-  "mudanças de ritmo",
-  "deslocamentos ou avanços"
-]
-  },
-  {
-    imagem:"17_mudanca.png",
-    titulo:"MUDANÇA",
-    significado:"Hoje pode surgir uma mudança de percepção, direção ou circunstância. Observe situações que indiquem que algo novo está pedindo espaço.",
-    observacoes:[
-  "alterações inesperadas",
-  "novas direções",
-  "necessidade de adaptação"
-]
-  },
-  {
-    imagem:"18_percepcao.png",
-    titulo:"PERCEPÇÃO",
-    significado:"Hoje pode haver tendência de perceber algo além do óbvio. Observe sinais, sensações e detalhes que ajudem a compreender melhor uma situação.",
-    observacoes:[
-  "compreensões importantes",
-  "sinais antes ignorados",
-  "novas interpretações"
-]
-  },
-  {
-    imagem:"19_silencio.png",
-    titulo:"SILÊNCIO",
-    significado:"Hoje pode haver tendência ao silêncio, recolhimento ou ausência de respostas imediatas. Observe o que se revela quando há menos fala e mais escuta.",
-    observacoes:[
-  "menos respostas externas",
-  "espaço para escuta interna",
-  "necessidade de observar"
-]
-  },
-  {
-    imagem:"20_ajuda.png",
-    titulo:"AJUDA",
-    significado:"Hoje pode surgir necessidade de pedir, oferecer ou aceitar ajuda. Situações podem mostrar que nem tudo precisa ser atravessado sozinho.",
-    observacoes:[
-  "apoio disponível",
-  "orientações úteis",
-  "colaboração de terceiros"
-]
-  },
-  {
-    imagem:"21_sobrecarga.png",
-    titulo:"SOBRECARGA",
-    significado:"Hoje pode haver tendência ao excesso de tarefas, responsabilidades ou estímulos. Observe onde algo começa a ocupar mais espaço do que deveria.",
-    observacoes:[
-  "excesso de demandas",
-  "acúmulo de responsabilidades",
-  "sinais de desgaste"
-]
-  },
-  {
-    imagem:"22_pressao.png",
-    titulo:"PRESSÃO",
-    significado:"Hoje pode haver tendência a cobranças externas ou internas. Observe situações em que você se sinta pressionado a responder, decidir ou agir antes de estar pronto.",
-    observacoes:[
-  "cobranças externas",
-  "urgência excessiva",
-  "necessidade de limites"
-],
-    recomendacao:"Momentos de pressão podem influenciar decisões, desempenho profissional e clareza estratégica."
-  },
-  {
-    imagem:"23_confusao.png",
-    titulo:"CONFUSÃO",
-    significado:"Hoje pode haver tendência a dúvidas, informações misturadas ou dificuldade de escolher direção. Observe se muitas vozes, opções ou pensamentos estão interferindo na clareza.",
-    observacoes:[
-  "informações contraditórias",
-  "dificuldade de decisão",
-  "falta de clareza"
-]
-  },
-  {
-    imagem:"24_desentendimento.png",
-    titulo:"DESENTENDIMENTO",
-    significado:"Hoje pode haver tendência a ruídos de comunicação, interpretações equivocadas ou expectativas diferentes entre as pessoas. Observe conversas que possam gerar mal-entendidos.",
-    observacoes:[
-  "ruídos de comunicação",
-  "interpretações diferentes",
-  "necessidade de esclarecimento"
-],
-    recomendacao:"Esta tendência pode estar ligada a ruídos emocionais, expectativas diferentes ou padrões de comunicação nos relacionamentos."
-  },
-  {
-    imagem:"25_cansaco.png",
-    titulo:"CANSAÇO",
-    significado:"Hoje pode haver tendência ao desgaste, excesso de esforço ou sensação de peso acumulado. Observe situações que exigem mais energia do que o habitual.",
-    observacoes:[
-  "excesso de tarefas",
-  "compromissos acumulados",
-  "necessidade de pausa"
-]
-  },
-  {
-    imagem:"26_distancia.png",
-    titulo:"DISTÂNCIA",
-    significado:"Hoje pode haver tendência a afastamento, silêncio ou sensação de separação. Observe se alguém ou algo parece mais distante, física ou emocionalmente.",
-    observacoes:[
-  "afastamentos temporários",
-  "necessidade de espaço",
-  "redução de contato"
-],
-    recomendacao:"Questões ligadas a relacionamentos, aproximações ou afastamentos podem ganhar destaque nesta tendência."
-  },
-  {
-    imagem:"27_impulsividade.png",
-    titulo:"IMPULSIVIDADE",
-    significado:"Hoje pode haver tendência a reações rápidas, decisões apressadas ou falas impulsivas. Observe antes de agir para não responder apenas ao momento.",
-    observacoes:[
-  "reações rápidas",
-  "decisões precipitadas",
-  "falta de reflexão"
-]
-  },
-  {
-    imagem:"28_frustracao.png",
-    titulo:"FRUSTRAÇÃO",
-    significado:"Hoje pode haver tendência de algo não sair como esperado. Observe onde expectativas, planos ou desejos encontram resistência ou precisam ser reajustados.",
-    observacoes:[
-  "expectativas não atendidas",
-  "planos interrompidos",
-  "necessidade de reajuste"
-]
-  },
-  {
-    imagem:"29_ansiedade.png",
-    titulo:"ANSIEDADE",
-    significado:"Hoje pode haver tendência à antecipação, preocupação excessiva ou pensamentos voltados para o futuro. Observe quando a mente tentar acelerar além do presente.",
-    observacoes:[
-  "preocupações antecipadas",
-  "necessidade de controle",
-  "cenários imaginados"
-],
-    recomendacao:"Pode haver padrões emocionais por trás desta tendência que merecem observação mais profunda."
-  },
-  {
-    imagem:"30_inseguranca.png",
-    titulo:"INSEGURANÇA",
-    significado:"Hoje pode haver tendência a dúvidas sobre si mesmo, sobre uma decisão ou sobre o caminho a seguir. Observe se o medo está ampliando a situação.",
-    observacoes:[
-  "dúvidas sobre si mesmo",
-  "receio de errar",
-  "busca por validação"
-],
-    recomendacao:"Esta tendência pode apontar para dúvidas internas, autoconfiança fragilizada ou necessidade de apoio emocional mais estruturado."
-  },
-  {
-    imagem:"31_mal_estar.png",
-    titulo:"MAL-ESTAR",
-    significado:"Hoje pode haver tendência a desconfortos físicos, emocionais ou energéticos. Observe ambientes, relações ou situações que possam gerar tensão ou incômodo.",
-    observacoes:[
-  "desconfortos emocionais",
-  "ambientes desgastantes",
-  "sinais de tensão"
-],
-    recomendacao:"Quando o desconforto aparece, pode ser importante compreender o que está afetando seu estado emocional, energético ou relacional."
-  },
-  {
-    imagem:"32_desorganizacao.png",
-    titulo:"DESORGANIZAÇÃO",
-    significado:"Hoje pode haver tendência à dispersão, confusão prática ou excesso de coisas fora do lugar. Observe onde uma pequena organização pode trazer mais clareza.",
-    observacoes:[
-  "tarefas fora de ordem",
-  "distrações frequentes",
-  "falta de planejamento"
-]
-  },
-  {
-    imagem:"33_instabilidade.png",
-    titulo:"INSTABILIDADE",
-    significado:"Hoje pode haver tendência a oscilações, incertezas ou sensação de pouca firmeza. Observe onde falta base antes de tomar decisões importantes.",
-    observacoes:[
-  "oscilações emocionais",
-  "mudanças inesperadas",
-  "falta de firmeza"
-]
-  },
-  {
-    imagem:"34_bloqueio.png",
-    titulo:"BLOQUEIO",
-    significado:"Hoje pode haver tendência de algo parecer travado, lento ou sem avanço. Observe se o bloqueio pede pausa, nova abordagem ou mais tempo.",
-    observacoes:[
-  "dificuldade de avançar",
-  "resistências internas",
-  "situações travadas"
-],
-    recomendacao:"Às vezes um bloqueio não está apenas na situação, mas na forma como estamos percebendo ou sustentando determinada experiência."
-  },
-  {
-    imagem:"35_esgotamento.png",
-    titulo:"ESGOTAMENTO",
-    significado:"Hoje pode haver tendência de energia no limite, cansaço profundo ou necessidade de recuperação. Observe sinais de excesso antes que se intensifiquem.",
-    observacoes:[
-  "energia no limite",
-  "necessidade de recuperação",
-  "sinais de excesso"
-],
-    recomendacao:"Quando a energia chega ao limite, compreender o que está drenando seus recursos internos pode ser tão importante quanto descansar."
-  },
-  {
-    imagem:"36_desanimo.png",
-    titulo:"DESÂNIMO",
-    significado:"Hoje pode haver tendência à baixa motivação, falta de impulso ou vontade de pausar. Observe se o dia pede menos cobrança e movimentos menores.",
-    observacoes:[
-  "baixa motivação",
-  "falta de impulso",
-  "necessidade de gentileza consigo"
-]
-  }
+ imagem:"32_disorganization.png",
+ titulo:"DISORGANIZATION",
+ significado:"Today there may be a tendency toward distraction, practical confusion, or too many things out of place. Notice where a small amount of organization could create greater clarity.",
+ observacoes:[
+ "tasks out of order",
+ "frequent distractions",
+ "lack of planning"
+ ]
+},
+{
+ imagem:"33_instability.png",
+ titulo:"INSTABILITY",
+ significado:"Today there may be a tendency toward fluctuations, uncertainty, or a lack of solid ground. Notice where stronger foundations may be needed before making important decisions.",
+ observacoes:[
+ "emotional fluctuations",
+ "unexpected changes",
+ "lack of stability"
+ ]
+},
+{
+ imagem:"34_blockage.png",
+ titulo:"BLOCKAGE",
+ significado:"Today there may be a tendency for something to feel stuck, slow, or unable to move forward. Notice whether the blockage calls for patience, a new approach, or additional time.",
+ observacoes:[
+ "difficulty moving forward",
+ "internal resistance",
+ "stalled situations"
+ ],
+ recomendacao:"Sometimes a blockage is not only in the situation itself, but also in how we are perceiving or sustaining a particular experience."
+},
+{
+ imagem:"35_exhaustion.png",
+ titulo:"EXHAUSTION",
+ significado:"Today there may be a tendency toward depleted energy, deep fatigue, or a need for recovery. Notice signs of excess before they become more intense.",
+ observacoes:[
+ "energy at its limit",
+ "need for recovery",
+ "signs of overextension"
+ ],
+ recomendacao:"When energy reaches its limit, understanding what is draining your internal resources may be just as important as resting."
+},
+{
+ imagem:"36_discouragement.png",
+ titulo:"DISCOURAGEMENT",
+ significado:"Today there may be a tendency toward low motivation, reduced momentum, or a desire to pause. Notice whether the day calls for less pressure and smaller steps.",
+ observacoes:[
+ "low motivation",
+ "lack of momentum",
+ "need for self-kindness"
+ ]
+}
 ];
+
 const botao = document.getElementById("drawButton");
 const cardArea = document.getElementById("card");
 
 let embaralhando = false;
 
 function hojeChave(){
-  return new Date().toDateString();
+ return new Date().toDateString();
 }
 
 function sortearCarta(){
-  const hoje = hojeChave();
-  const dataSalva = localStorage.getItem("dataCarta");
-  const cartaSalva = localStorage.getItem("cartaDoDia");
 
-  if(dataSalva === hoje && cartaSalva){
-    mostrarCarta(JSON.parse(cartaSalva), false);
-    return;
-  }
+ const hoje = hojeChave();
+ const dataSalva = localStorage.getItem("dataCarta");
+ const cartaSalva = localStorage.getItem("cartaDoDia");
 
-  if(!embaralhando){
-    iniciarEmbaralhamento();
-  } else {
-    pararBaralho();
-  }
+ if(dataSalva === hoje && cartaSalva){
+  mostrarCarta(JSON.parse(cartaSalva), false);
+  return;
+ }
+
+ if(!embaralhando){
+  iniciarEmbaralhamento();
+ } else {
+  pararBaralho();
+ }
+
 }
 
 function iniciarEmbaralhamento(){
-  embaralhando = true;
 
-  botao.innerText = "Parar Baralho";
-  botao.disabled = false;
+ embaralhando = true;
 
-  cardArea.style.display = "inline-block";
-  cardArea.innerHTML = `
-<img src="verso.png" alt="Verso da carta" style="
-width:220px;
-margin:0 auto 22px;
-display:block;
-border-radius:22px;
-box-shadow:0 12px 28px rgba(58,45,31,0.22);
-animation:pulseCard 0.55s infinite alternate;
-">
+ botao.innerText = "Stop Shuffling";
+ botao.disabled = false;
 
-<p class="meaning">
-Pare o baralho quando sentir que é o momento.
-</p>
-`;
+ cardArea.style.display = "inline-block";
 
-   
+ cardArea.innerHTML = `
+ <img src="back.png" alt="Card Back" style="
+ width:220px;
+ margin:0 auto 22px;
+ display:block;
+ border-radius:22px;
+ box-shadow:0 12px 28px rgba(58,45,31,0.22);
+ animation:pulseCard 0.55s infinite alternate;
+ ">
+
+ <p class="meaning">
+ Stop the deck when you feel the moment is right.
+ </p>
+ `;
 }
 
 function pararBaralho(){
-  embaralhando = false;
-  botao.disabled = true;
-  botao.innerText = "Revelando...";
 
-  const cartaFinal = cartas[Math.floor(Math.random() * cartas.length)];
+ embaralhando = false;
 
-  localStorage.setItem("cartaDoDia", JSON.stringify(cartaFinal));
-  localStorage.setItem("dataCarta", hojeChave());
-  salvarHistorico(cartaFinal);
+ botao.disabled = true;
+ botao.innerText = "Revealing...";
+
+ const cartaFinal =
+ cartas[Math.floor(Math.random() * cartas.length)];
+
+ localStorage.setItem(
+ "cartaDoDia",
+ JSON.stringify(cartaFinal)
+ );
+
+ localStorage.setItem(
+ "dataCarta",
+ hojeChave()
+ );
+
+ salvarHistorico(cartaFinal);
 
  cardArea.style.transition = "opacity 0.45s ease";
-cardArea.style.opacity = "0";
+ cardArea.style.opacity = "0";
 
-setTimeout(() => {
+ setTimeout(() => {
+
   mostrarCarta(cartaFinal, true);
+
   cardArea.style.opacity = "0";
 
   setTimeout(() => {
-    cardArea.style.opacity = "1";
-  }, 80);
+   cardArea.style.opacity = "1";
+  },80);
 
-}, 450);
+ },450);
+
 }
 
 const grupos = {
