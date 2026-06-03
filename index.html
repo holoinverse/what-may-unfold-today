@@ -650,269 +650,292 @@ function pararBaralho(){
 }
 
 const grupos = {
-  clareza: [
-    "CLAREZA",
-    "PERCEPÇÃO",
-    "OBSERVAÇÃO",
-    "REFLEXÃO"
-  ],
-
-  mudanca: [
-    "MOVIMENTO",
-    "MUDANÇA",
-    "TRANSIÇÃO",
-    "ABERTURA"
-  ],
-
-  conexao: [
-    "CONEXÃO",
-    "APOIO",
-    "AJUDA"
-  ],
-
-  tensao: [
-    "PRESSÃO",
-    "SOBRECARGA",
-    "FRUSTRAÇÃO",
-    "DESENTENDIMENTO",
-    "CONFUSÃO"
-  ],
-
-  desgaste: [
-    "CANSAÇO",
-    "ESGOTAMENTO",
-    "DESÂNIMO",
-    "MAL-ESTAR"
-  ],
-
-  inseguranca: [
-    "INSEGURANÇA",
-    "ANSIEDADE",
-    "INSTABILIDADE",
-    "BLOQUEIO"
-  ]
+ clarity: [
+  "CLARITY",
+  "PERCEPTION",
+  "OBSERVATION",
+  "REFLECTION"
+ ],
+ change: [
+  "MOVEMENT",
+  "CHANGE",
+  "TRANSITION",
+  "OPENNESS"
+ ],
+ connection: [
+  "CONNECTION",
+  "SUPPORT",
+  "HELP"
+ ],
+ tension: [
+  "PRESSURE",
+  "OVERLOAD",
+  "FRUSTRATION",
+  "MISUNDERSTANDING",
+  "CONFUSION"
+ ],
+ fatigue: [
+  "FATIGUE",
+  "EXHAUSTION",
+  "DISCOURAGEMENT",
+  "DISCOMFORT"
+ ],
+ insecurity: [
+  "INSECURITY",
+  "ANXIETY",
+  "INSTABILITY",
+  "BLOCKAGE"
+ ]
 };
-    
+
 function salvarHistorico(carta){
-  const hoje = hojeChave();
-  const historico = JSON.parse(localStorage.getItem("historicoCartas") || "[]");
 
-  const jaExisteHoje = historico.some(item => item.data === hoje);
+ const hoje = hojeChave();
 
-  if(!jaExisteHoje){
-    historico.push({
-      data: hoje,
-      titulo: carta.titulo
-    });
-  }
+ const historico = JSON.parse(
+  localStorage.getItem("historicoCartas") || "[]"
+ );
 
-  const ultimos30 = historico.slice(-30);
-  localStorage.setItem("historicoCartas", JSON.stringify(ultimos30));
+ const jaExisteHoje = historico.some(
+  item => item.data === hoje
+ );
+
+ if(!jaExisteHoje){
+  historico.push({
+   data: hoje,
+   titulo: carta.titulo
+  });
+ }
+
+ const ultimos30 = historico.slice(-30);
+
+ localStorage.setItem(
+  "historicoCartas",
+  JSON.stringify(ultimos30)
+ );
 }
 
 function gerarResumoSemanal(){
 
-  const historico = JSON.parse(
-    localStorage.getItem("historicoCartas") || "[]"
-  ).slice(-7);
+ const historico = JSON.parse(
+  localStorage.getItem("historicoCartas") || "[]"
+ ).slice(-7);
 
-  if(historico.length < 3){
-    return "";
+ if(historico.length < 3){
+  return "";
+ }
+
+ const contagem = {};
+
+ Object.keys(grupos).forEach(grupo => {
+  contagem[grupo] = 0;
+ });
+
+ historico.forEach(item => {
+  Object.entries(grupos).forEach(([grupo, cartas]) => {
+   if(cartas.includes(item.titulo)){
+    contagem[grupo]++;
+   }
+  });
+ });
+
+ let grupoPrincipal = Object.keys(contagem)[0];
+
+ Object.keys(contagem).forEach(grupo => {
+  if(contagem[grupo] > contagem[grupoPrincipal]){
+   grupoPrincipal = grupo;
   }
+ });
 
-  const contagem = {};
+ const resumos = {
+  clarity:
+  "Your recent cycle suggests observation, understanding, and new perceptions around situations currently unfolding.",
 
-  Object.keys(grupos).forEach(grupo => {
-    contagem[grupo] = 0;
-  });
+  change:
+  "Your recent cycle suggests movement, adaptation, and important transitions over the past few days.",
 
-  historico.forEach(item => {
+  connection:
+  "Your recent cycle highlights relationships, support, and meaningful exchanges.",
 
-    Object.entries(grupos).forEach(([grupo, cartas]) => {
+  tension:
+  "Your recent cycle indicates pressure, challenges, or a need for reorganization in demanding situations.",
 
-      if(cartas.includes(item.titulo)){
-        contagem[grupo]++;
-      }
+  fatigue:
+  "Your recent cycle suggests a need for rest, recovery, and preservation of energy.",
 
-    });
+  insecurity:
+  "Your recent cycle points to doubts, inner fluctuations, or a need to strengthen confidence."
+ };
 
-  });
-
-  let grupoPrincipal = Object.keys(contagem)[0];
-
-  Object.keys(contagem).forEach(grupo => {
-
-    if(contagem[grupo] > contagem[grupoPrincipal]){
-      grupoPrincipal = grupo;
-    }
-
-  });
-
-  const resumos = {
-
-    clareza:
-      "Seu ciclo recente sugere observação, compreensão e novas percepções sobre situações em andamento.",
-
-    mudanca:
-      "Seu ciclo recente sugere movimento, adaptação e transições importantes ao longo dos últimos dias.",
-
-    conexao:
-      "Seu ciclo recente destaca relacionamentos, apoio e trocas significativas.",
-
-    tensao:
-      "Seu ciclo recente indica pressão, desafios ou necessidade de reorganização diante de situações exigentes.",
-
-    desgaste:
-      "Seu ciclo recente sugere necessidade de descanso, recuperação e preservação de energia.",
-
-    inseguranca:
-      "Seu ciclo recente aponta dúvidas, oscilações internas ou necessidade de fortalecer a confiança."
-  };
-
-  return `
-  <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.22);">
-    <strong>Resumo dos Últimos 7 Dias</strong>
-    <p style="margin-top:10px;">
-      ${resumos[grupoPrincipal]}
-    </p>
-  </div>
-  `;
+ return `
+ <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.22);">
+  <strong>Summary of the Last 7 Days</strong>
+  <p style="margin-top:10px;">
+   ${resumos[grupoPrincipal]}
+  </p>
+ </div>
+ `;
 }
 
-    function gerarResumoMensal(){
+function gerarResumoMensal(){
 
-  const historico = JSON.parse(
-    localStorage.getItem("historicoCartas") || "[]"
-  ).slice(-30);
+ const historico = JSON.parse(
+  localStorage.getItem("historicoCartas") || "[]"
+ ).slice(-30);
 
-  if(historico.length < 7){
-    return "";
+ if(historico.length < 7){
+  return "";
+ }
+
+ const contagem = {};
+
+ Object.keys(grupos).forEach(grupo => {
+  contagem[grupo] = 0;
+ });
+
+ historico.forEach(item => {
+  Object.entries(grupos).forEach(([grupo, cartas]) => {
+   if(cartas.includes(item.titulo)){
+    contagem[grupo]++;
+   }
+  });
+ });
+
+ let grupoPrincipal = Object.keys(contagem)[0];
+
+ Object.keys(contagem).forEach(grupo => {
+  if(contagem[grupo] > contagem[grupoPrincipal]){
+   grupoPrincipal = grupo;
   }
+ });
 
-  const contagem = {};
+ const nomes = {
+  clarity: "CLARITY",
+  change: "CHANGE",
+  connection: "CONNECTION",
+  tension: "TENSION",
+  fatigue: "FATIGUE",
+  insecurity: "INSECURITY"
+ };
 
-  Object.keys(grupos).forEach(grupo => {
-    contagem[grupo] = 0;
-  });
+ const textos = {
+  clarity:
+  "Throughout this cycle, themes related to observation, perception, and understanding appeared more frequently.",
 
-  historico.forEach(item => {
-    Object.entries(grupos).forEach(([grupo, cartas]) => {
-      if(cartas.includes(item.titulo)){
-        contagem[grupo]++;
-      }
-    });
-  });
+  change:
+  "Throughout this cycle, themes related to movement, adaptation, and transition appeared more frequently.",
 
-  let grupoPrincipal = Object.keys(contagem)[0];
+  connection:
+  "Throughout this cycle, themes related to support, connection, and meaningful exchanges appeared more frequently.",
 
-  Object.keys(contagem).forEach(grupo => {
-    if(contagem[grupo] > contagem[grupoPrincipal]){
-      grupoPrincipal = grupo;
-    }
-  });
+  tension:
+  "Throughout this cycle, themes related to pressure, conflict, or reorganization appeared more frequently.",
 
-  const nomes = {
-    clareza: "CLAREZA",
-    mudanca: "MUDANÇA",
-    conexao: "CONEXÃO",
-    tensao: "TENSÃO",
-    desgaste: "DESGASTE",
-    inseguranca: "INSEGURANÇA"
-  };
+  fatigue:
+  "Throughout this cycle, themes related to tiredness, recovery, and preservation of energy appeared more frequently.",
 
-  const textos = {
-    clareza: "Ao longo deste ciclo, temas ligados à observação, percepção e compreensão apareceram com maior frequência.",
-    mudanca: "Ao longo deste ciclo, temas ligados a movimento, adaptação e transição apareceram com maior frequência.",
-    conexao: "Ao longo deste ciclo, temas ligados a apoio, vínculos e trocas significativas apareceram com maior frequência.",
-    tensao: "Ao longo deste ciclo, temas ligados a pressão, conflitos ou reorganização apareceram com maior frequência.",
-    desgaste: "Ao longo deste ciclo, temas ligados a cansaço, recuperação e preservação de energia apareceram com maior frequência.",
-    inseguranca: "Ao longo deste ciclo, temas ligados a dúvidas, bloqueios e instabilidade interna apareceram com maior frequência."
-  };
+  insecurity:
+  "Throughout this cycle, themes related to doubts, blockages, and inner instability appeared more frequently."
+ };
 
-  return `
-  <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.24);">
-    <strong>Tendência Predominante dos Últimos 30 Dias</strong>
-    <h2 style="margin:14px 0 8px;font-size:24px;">${nomes[grupoPrincipal]}</h2>
-    <p style="margin-top:10px;">
-      ${textos[grupoPrincipal]}
-    </p>
-  </div>
-  `;
+ return `
+ <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.24);">
+  <strong>Predominant Tendency of the Last 30 Days</strong>
+  <h2 style="margin:14px 0 8px;font-size:24px;">${nomes[grupoPrincipal]}</h2>
+  <p style="margin-top:10px;">
+   ${textos[grupoPrincipal]}
+  </p>
+ </div>
+ `;
 }
-function mostrarCarta(carta, nova){
-  cardArea.classList.remove("shuffle");
-  cardArea.style.display = "inline-block";
+
+    function mostrarCarta(carta, nova){
+
+ cardArea.classList.remove("shuffle");
+ cardArea.style.display = "inline-block";
  cardArea.style.transition = "opacity 0.45s ease";
 
-  cardArea.innerHTML = `
-    <img src="${carta.imagem}" alt="${carta.titulo}">
-    <h2>${carta.titulo}</h2>
-   <p class="meaning">${carta.significado}</p>
+ cardArea.innerHTML = `
+ <img src="${carta.imagem}" alt="${carta.titulo}">
+ <h2>${carta.titulo}</h2>
 
-<div style="max-width:560px;margin:18px auto 0;text-align:left;">
-  <strong>Observe especialmente:</strong>
+ <p class="meaning">${carta.significado}</p>
+
+ <div style="max-width:560px;margin:18px auto 0;text-align:left;">
+  <strong>Pay special attention to:</strong>
   <ul style="margin-top:10px;line-height:1.8;">
-    ${carta.observacoes ? carta.observacoes.map(item => `<li>${item}</li>`).join("") : ""}
+   ${carta.observacoes ? carta.observacoes.map(item => `<li>${item}</li>`).join("") : ""}
   </ul>
-</div>
-${carta.recomendacao ? `<p class="meaning" style="margin-top:18px;"><strong>Aprofundando a leitura:</strong> ${carta.recomendacao}</p>` : ""}
-    <div class="services">
-      <h3>Deseja explorar esta tendência com mais profundidade?</h3>
+ </div>
 
-      <h4>Psicoterapia Online</h4>
-      <p>Para ansiedade, relacionamentos, autoconhecimento, desenvolvimento pessoal e questões emocionais.</p>
-      <a href="https://onlineterapeuta.com.br" target="_blank" rel="noopener">onlineterapeuta.com.br</a>
+ ${carta.recomendacao ? `<p class="meaning" style="margin-top:18px;"><strong>Deepening the reading:</strong> ${carta.recomendacao}</p>` : ""}
 
-      <h4>Leitura de Aura e Chakras</h4>
-      <p>Uma análise do seu campo energético, padrões emocionais, bloqueios e situações da sua vida que podem estar influenciando sua jornada atual.</p>
+ <div class="services">
+  <h3>Would you like to explore this tendency more deeply?</h3>
 
-      <h4>Leitura Áurica Amorosa</h4>
-      <p>Para compreender o que pode estar dificultando sua vida amorosa, impedindo relacionamentos mais profundos ou criando padrões que se repetem.</p>
+  <h4>Online Psychotherapy</h4>
+  <p>For anxiety, relationships, self-knowledge, personal development, and emotional concerns.</p>
+  <a href="https://onlineterapeuta.com.br" target="_blank" rel="noopener">onlineterapeuta.com.br</a>
 
-      <h4>Leitura para Empresários e Empreendedores</h4>
-      <p>Insights sobre padrões, decisões, desafios e oportunidades relacionados à vida profissional, carreira e negócios.</p>
-      <a href="https://www.akashaprana.com" target="_blank" rel="noopener">akashaprana.com</a>
-    </div>
-  `;
+  <h4>Aura and Chakra Reading</h4>
+  <p>An analysis of your energetic field, emotional patterns, blockages, and life situations that may be influencing your current journey.</p>
 
-  botao.disabled = false;
-  botao.style.display = "none";
+  <h4>Love Aura Reading</h4>
+  <p>For understanding what may be affecting your love life, blocking deeper relationships, or creating repeating patterns.</p>
 
-const historico = JSON.parse(localStorage.getItem("historicoCartas") || "[]").slice(-7);
+  <h4>Reading for Business Owners and Entrepreneurs</h4>
+  <p>Insights into patterns, decisions, challenges, and opportunities related to professional life, career, and business.</p>
 
-const historicoHTML = historico.length > 1
-  ? `
-    <div style="max-width:560px;margin:28px auto 0;padding:18px 16px;border-radius:18px;background:rgba(255,255,255,0.26);text-align:left;">
-      <strong>Histórico recente</strong>
-      <ul style="margin-top:10px;line-height:1.8;">
-        ${historico.map(item => `<li>${item.titulo}</li>`).join("")}
-      </ul>
-      <p style="margin:12px 0 0;font-size:15px;opacity:0.75;">Retorne amanhã para observar a próxima tendência.</p>
-    </div>
-  `
-  : `
-    <p style="margin-top:26px;font-size:15px;opacity:0.75;">Retorne amanhã para observar a próxima tendência.</p>
-  `;
+  <a href="https://www.akashaprana.com" target="_blank" rel="noopener">akashaprana.com</a>
+ </div>
+ `;
 
-cardArea.innerHTML += historicoHTML;
-  cardArea.innerHTML += gerarResumoSemanal();
-  cardArea.innerHTML += gerarResumoMensal();
-  
-  document.getElementById("shareMessage").style.display = "block";
-const textoCompartilhar =
-`Hoje minha carta foi:
+ botao.disabled = false;
+ botao.style.display = "none";
 
+ const historico = JSON.parse(
+  localStorage.getItem("historicoCartas") || "[]"
+ ).slice(-7);
+
+ const historicoHTML = historico.length > 1
+ ? `
+ <div style="max-width:560px;margin:28px auto 0;padding:18px 16px;border-radius:18px;background:rgba(255,255,255,0.26);text-align:left;">
+  <strong>Recent History</strong>
+  <ul style="margin-top:10px;line-height:1.8;">
+   ${historico.map(item => `<li>${item.titulo}</li>`).join("")}
+  </ul>
+  <p style="margin:12px 0 0;font-size:15px;opacity:0.75;">
+   Return tomorrow to observe the next tendency.
+  </p>
+ </div>
+ `
+ : `
+ <p style="margin-top:26px;font-size:15px;opacity:0.75;">
+  Return tomorrow to observe the next tendency.
+ </p>
+ `;
+
+ cardArea.innerHTML += historicoHTML;
+ cardArea.innerHTML += gerarResumoSemanal();
+ cardArea.innerHTML += gerarResumoMensal();
+
+ document.getElementById("shareMessage").style.display = "block";
+
+ const textoCompartilhar =
+`Today my card was:
 ${carta.titulo}
 
-Descubra qual tendência pode estar presente no seu dia:
-https://www.onlineterapeuta.com.br/tendencia-do-dia`;
+Discover what may unfold for you today:
+https://holoinverse.github.io/what-may-unfold-today/`;
 
-const shareButton = document.getElementById("shareButton");
-shareButton.href = "https://wa.me/?text=" + encodeURIComponent(textoCompartilhar);
-shareButton.style.display = "inline-block";
+ const shareButton = document.getElementById("shareButton");
+
+ shareButton.href =
+ "https://wa.me/?text=" + encodeURIComponent(textoCompartilhar);
+
+ shareButton.style.display = "inline-block";
 }
 
-  </script>
-
+ </script>
 </body>
 </html>
