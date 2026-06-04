@@ -717,64 +717,71 @@ function salvarHistorico(carta){
 
 function gerarResumoSemanal(){
 
- const historico = JSON.parse(
-  localStorage.getItem("historicoCartas") || "[]"
- ).slice(-7);
+  const historico = JSON.parse(
+    localStorage.getItem("historicoCartas") || "[]"
+  ).slice(-7);
 
- if(historico.length < 3){
-  return "";
- }
-
- const contagem = {};
-
- Object.keys(grupos).forEach(grupo => {
-  contagem[grupo] = 0;
- });
-
- historico.forEach(item => {
-  Object.entries(grupos).forEach(([grupo, cartas]) => {
-   if(cartas.includes(item.titulo)){
-    contagem[grupo]++;
-   }
-  });
- });
-
- let grupoPrincipal = Object.keys(contagem)[0];
-
- Object.keys(contagem).forEach(grupo => {
-  if(contagem[grupo] > contagem[grupoPrincipal]){
-   grupoPrincipal = grupo;
+  if(historico.length < 3){
+    return "";
   }
- });
 
- const resumos = {
-  clarity:
-  "Your recent cycle suggests observation, understanding, and new perceptions around situations currently unfolding.",
+  const cartasRecentes = historico.map(item => item.titulo);
 
-  change:
-  "Your recent cycle suggests movement, adaptation, and important transitions over the past few days.",
+  const dense = [
+    "PRESSURE","OVERLOAD","CONFUSION","MISUNDERSTANDING","FATIGUE",
+    "DISTANCE","IMPULSIVENESS","FRUSTRATION","ANXIETY","INSECURITY",
+    "DISCOMFORT","DISORGANIZATION","INSTABILITY","BLOCKAGE","EXHAUSTION","DISCOURAGEMENT"
+  ];
 
-  connection:
-  "Your recent cycle highlights relationships, support, and meaningful exchanges.",
+  const expansive = [
+    "CLARITY","RELIEF","CONNECTION","FLOW","OPENNESS","STABILITY",
+    "ALIGNMENT","MOTIVATION","SUPPORT","HELP","MOVEMENT","CHANGE"
+  ];
 
-  tension:
-  "Your recent cycle indicates pressure, challenges, or a need for reorganization in demanding situations.",
+  const reflective = [
+    "OBSERVATION","SENSITIVITY","REFLECTION","TRANSITION",
+    "ANTICIPATION","PERCEPTION","SILENCE","REST"
+  ];
 
-  fatigue:
-  "Your recent cycle suggests a need for rest, recovery, and preservation of energy.",
+  const repeated = cartasRecentes.filter((carta, index) =>
+    cartasRecentes.indexOf(carta) !== index
+  );
 
-  insecurity:
-  "Your recent cycle points to doubts, inner fluctuations, or a need to strengthen confidence."
- };
+  const qtdDense = cartasRecentes.filter(carta => dense.includes(carta)).length;
+  const qtdExpansive = cartasRecentes.filter(carta => expansive.includes(carta)).length;
+  const qtdReflective = cartasRecentes.filter(carta => reflective.includes(carta)).length;
 
- return `
- <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.22);">
-  <strong>Summary of the Last 7 Days</strong>
-  <p style="margin-top:10px;">
-   ${resumos[grupoPrincipal]}
-  </p>
- </div>
- `;
+  let texto = "In your recent readings, ";
+
+  if(repeated.length > 0){
+    const repeatedCard = repeated[0];
+    texto += `${repeatedCard} appeared more than once, suggesting this theme may be repeating itself strongly within your recent cycle. `;
+  }
+
+  if(qtdDense >= 3){
+    texto += "there are signs of tension, fatigue, or challenges asking for greater attention. ";
+  } else if(qtdExpansive >= 3){
+    texto += "there are signs of openness, support, or positive movement throughout recent days. ";
+  } else if(qtdReflective >= 3){
+    texto += "there is an invitation to observe more carefully, reflect, and notice subtle details before taking action. ";
+  } else {
+    texto += "different themes have emerged, suggesting a varied cycle that is still unfolding and reorganizing itself. ";
+  }
+
+  if(qtdDense > 0 && qtdExpansive > 0){
+    texto += "Even with moments of pressure, there are also indications of support, clarity, or opportunities for progress. ";
+  }
+
+  texto += "Observe how these patterns appear through your situations, conversations, and decisions.";
+
+  return `
+  <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.22);">
+    <strong>Summary of the Last 7 Days</strong>
+    <p style="margin-top:10px;">
+      ${texto}
+    </p>
+  </div>
+  `;
 }
 
 function gerarResumoMensal(){
