@@ -941,12 +941,23 @@ Explore Available Readings at Akasha & Prana
 
  document.getElementById("shareMessage").style.display = "block";
 
- const textoCompartilhar =
+ const pontos = carta.observacoes
+  ? carta.observacoes.map(item => `• ${item}`).join("\n")
+  : "";
+
+const textoCompartilhar =
 `Today my card was:
+
 ${carta.titulo}
 
+Pay special attention to:
+${pontos}
+
 Discover what may unfold for you today:
-https://holoinverse.github.io/what-may-unfold-today/`;
+https://www.akashaprana.com/what-may-unfold-today
+
+For deeper insight through psychic and aura readings:
+https://www.akashaprana.com
 
  const shareButton = document.getElementById("shareButton");
 
