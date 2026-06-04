@@ -805,7 +805,8 @@ function gerarResumoMensal(){
   const cartaPrincipal = Object.keys(contagem).reduce((a,b)=>
     contagem[a] > contagem[b] ? a : b
   );
-
+const ocorrencias = contagem[cartaPrincipal];
+ 
   const dense = [
     "PRESSURE","OVERLOAD","CONFUSION","MISUNDERSTANDING",
     "FATIGUE","DISTANCE","IMPULSIVENESS","FRUSTRATION",
@@ -836,7 +837,7 @@ function gerarResumoMensal(){
 
   let texto = "";
 
-  texto += `Over the last 30 days, the most recurring theme was ${cartaPrincipal}. `;
+  texto += `Over the last 30 days, the most recurring card was ${cartaPrincipal}, appearing ${ocorrencias} time${ocorrencias > 1 ? "s" : ""}. `;
 
   if(qtdDense >= qtdExpansive && qtdDense >= qtdReflective){
     texto += "Themes related to pressure, fatigue, challenges, or the need for reorganization appeared frequently throughout this period. ";
