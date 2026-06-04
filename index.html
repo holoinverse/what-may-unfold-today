@@ -786,74 +786,84 @@ function gerarResumoSemanal(){
 
 function gerarResumoMensal(){
 
- const historico = JSON.parse(
-  localStorage.getItem("historicoCartas") || "[]"
- ).slice(-30);
+  const historico = JSON.parse(
+    localStorage.getItem("historicoCartas") || "[]"
+  ).slice(-30);
 
- if(historico.length < 7){
-  return "";
- }
-
- const contagem = {};
-
- Object.keys(grupos).forEach(grupo => {
-  contagem[grupo] = 0;
- });
-
- historico.forEach(item => {
-  Object.entries(grupos).forEach(([grupo, cartas]) => {
-   if(cartas.includes(item.titulo)){
-    contagem[grupo]++;
-   }
-  });
- });
-
- let grupoPrincipal = Object.keys(contagem)[0];
-
- Object.keys(contagem).forEach(grupo => {
-  if(contagem[grupo] > contagem[grupoPrincipal]){
-   grupoPrincipal = grupo;
+  if(historico.length < 7){
+    return "";
   }
- });
 
- const nomes = {
-  clarity: "CLARITY",
-  change: "CHANGE",
-  connection: "CONNECTION",
-  tension: "TENSION",
-  fatigue: "FATIGUE",
-  insecurity: "INSECURITY"
- };
+  const cartasRecentes = historico.map(item => item.titulo);
 
- const textos = {
-  clarity:
-  "Throughout this cycle, themes related to observation, perception, and understanding appeared more frequently.",
+  const contagem = {};
 
-  change:
-  "Throughout this cycle, themes related to movement, adaptation, and transition appeared more frequently.",
+  cartasRecentes.forEach(carta => {
+    contagem[carta] = (contagem[carta] || 0) + 1;
+  });
 
-  connection:
-  "Throughout this cycle, themes related to support, connection, and meaningful exchanges appeared more frequently.",
+  const cartaPrincipal = Object.keys(contagem).reduce((a,b)=>
+    contagem[a] > contagem[b] ? a : b
+  );
 
-  tension:
-  "Throughout this cycle, themes related to pressure, conflict, or reorganization appeared more frequently.",
+  const dense = [
+    "PRESSURE","OVERLOAD","CONFUSION","MISUNDERSTANDING",
+    "FATIGUE","DISTANCE","IMPULSIVENESS","FRUSTRATION",
+    "ANXIETY","INSECURITY","DISCOMFORT","DISORGANIZATION",
+    "INSTABILITY","BLOCKAGE","EXHAUSTION","DISCOURAGEMENT"
+  ];
 
-  fatigue:
-  "Throughout this cycle, themes related to tiredness, recovery, and preservation of energy appeared more frequently.",
+  const expansive = [
+    "CLARITY","RELIEF","CONNECTION","FLOW","OPENNESS",
+    "STABILITY","ALIGNMENT","MOTIVATION","SUPPORT",
+    "HELP","MOVEMENT","CHANGE"
+  ];
 
-  insecurity:
-  "Throughout this cycle, themes related to doubts, blockages, and inner instability appeared more frequently."
- };
+  const reflective = [
+    "OBSERVATION","SENSITIVITY","REFLECTION",
+    "TRANSITION","ANTICIPATION","PERCEPTION",
+    "SILENCE","REST"
+  ];
 
- return `
- <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.24);">
-  <strong>Predominant Tendency of the Last 30 Days</strong>
-  <h2 style="margin:14px 0 8px;font-size:24px;">${nomes[grupoPrincipal]}</h2>
-  <p style="margin-top:10px;">
-   ${textos[grupoPrincipal]}
-  </p>
- </div>
- `;
+  const qtdDense =
+    cartasRecentes.filter(c => dense.includes(c)).length;
+
+  const qtdExpansive =
+    cartasRecentes.filter(c => expansive.includes(c)).length;
+
+  const qtdReflective =
+    cartasRecentes.filter(c => reflective.includes(c)).length;
+
+  let texto = "";
+
+  texto += `Over the last 30 days, the most recurring theme was ${cartaPrincipal}. `;
+
+  if(qtdDense >= qtdExpansive && qtdDense >= qtdReflective){
+    texto += "Themes related to pressure, fatigue, challenges, or the need for reorganization appeared frequently throughout this period. ";
+  }
+
+  if(qtdExpansive >= qtdDense && qtdExpansive >= qtdReflective){
+    texto += "There was also a strong presence of openness, support, growth, and possibilities for movement. ";
+  }
+
+  if(qtdReflective >= qtdDense && qtdReflective >= qtdExpansive){
+    texto += "Observation, reflection, and gradual understanding also played an important role in this cycle. ";
+  }
+
+  if(qtdDense > 0 && qtdExpansive > 0){
+    texto += "Even when challenges appeared, there were also signs of support, clarity, or opportunities for realignment. ";
+  }
+
+  texto += "Notice which situations in your life reflect these recurring patterns.";
+
+  return `
+  <div style="max-width:560px;margin:22px auto;padding:18px;border-radius:18px;background:rgba(255,255,255,0.24);">
+    <strong>Predominant Tendency of the Last 30 Days</strong>
+    <p style="margin-top:10px;">
+      ${texto}
+    </p>
+  </div>
+  `;
 }
 
     function mostrarCarta(carta, nova){
