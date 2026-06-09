@@ -573,9 +573,11 @@ function sortearCarta(){
  const cartaSalva = localStorage.getItem("cartaDoDia");
 
  if(dataSalva === hoje && cartaSalva){
-  mostrarCarta(JSON.parse(cartaSalva), false);
+  const cartaAtual = JSON.parse(cartaSalva);
+  salvarHistorico(cartaAtual);
+  mostrarCarta(cartaAtual, false);
   return;
- }
+}
 
  if(!embaralhando){
   iniciarEmbaralhamento();
