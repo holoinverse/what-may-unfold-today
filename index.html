@@ -172,8 +172,8 @@ button,
 
  <a id="drawButton"
    href="https://holoinverse.github.io/what-may-unfold-today/"
-   target="_top"
-   onclick="if(window.innerWidth > 768){ event.preventDefault(); sortearCarta(); }"
+   target="_blank"
+onclick="if(!/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){ event.preventDefault(); sortearCarta(); }"
    style="
      display:inline-block;
      margin-top:16px;
