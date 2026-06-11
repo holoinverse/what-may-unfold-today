@@ -173,7 +173,7 @@ button,
  <a id="drawButton"
   href="https://holoinverse.github.io/what-may-unfold-today/?mobile=1"
    target="_blank"
-onclick="if(!/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){ event.preventDefault(); sortearCarta(); }"
+onclick="if(new URLSearchParams(window.location.search).get('mobile') === '1' || !/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){ event.preventDefault(); sortearCarta(); }"
    style="
      display:inline-block;
      margin-top:16px;
