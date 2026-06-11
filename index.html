@@ -171,7 +171,7 @@ button,
 </p>
 
  <a id="drawButton"
-   href="https://holoinverse.github.io/what-may-unfold-today/"
+  href="https://holoinverse.github.io/what-may-unfold-today/?mobile=1"
    target="_blank"
 onclick="if(!/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){ event.preventDefault(); sortearCarta(); }"
    style="
@@ -993,6 +993,14 @@ https://www.akashaprana.com`;
  shareButton.style.display = "inline-block";
 }
 
+  window.addEventListener("load", function(){
+  const params = new URLSearchParams(window.location.search);
+
+  if(params.get("mobile") === "1"){
+    sortearCarta();
+  }
+});
+  
  </script>
 </body>
 </html>
