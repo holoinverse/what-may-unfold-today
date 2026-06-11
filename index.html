@@ -27,7 +27,8 @@
  line-height:1.55;
  opacity:0.84;
  }
- button{
+button,
+#drawButton{
  margin-top:16px;
  padding:20px 42px;
  border:none;
@@ -40,7 +41,8 @@
  font-family:Georgia, serif;
  box-shadow:0 12px 28px rgba(58,45,31,0.18);
  }
- button:hover{ opacity:0.92; }
+ button:hover,
+#drawButton:hover{ opacity:0.92; }
  button:disabled{
  opacity:0.65;
  cursor:not-allowed;
@@ -167,7 +169,27 @@
  Ask for clarity for your day, then observe the card that appears.
 </p>
 
- <button id="drawButton" onclick="startExperience()">Start Draw</button>
+ <a id="drawButton"
+   href="https://holoinverse.github.io/what-may-unfold-today/"
+   target="_top"
+   onclick="if(window.innerWidth > 768){ event.preventDefault(); sortearCarta(); }"
+   style="
+     display:inline-block;
+     margin-top:16px;
+     padding:20px 42px;
+     border:none;
+     border-radius:18px;
+     background:#3a2d1f;
+     color:white;
+     font-size:24px;
+     font-weight:bold;
+     cursor:pointer;
+     font-family:Georgia, serif;
+     box-shadow:0 12px 28px rgba(58,45,31,0.18);
+     text-decoration:none;
+   ">
+  Start Draw
+</a>
 
 <div id="card"></div>
 
@@ -566,16 +588,6 @@ function hojeChave(){
  return new Date().toDateString();
 }
 
-function startExperience(){
-
-  if(window.innerWidth <= 768){
-   window.top.location.href = "https://holoinverse.github.io/what-may-unfold-today/";
-    return;
-  }
-
-  sortearCarta();
-}
-  
 function sortearCarta(){
 
  const hoje = hojeChave();
