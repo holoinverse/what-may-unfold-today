@@ -284,6 +284,24 @@ style="display:none;margin-top:12px;padding:20px 42px;border-radius:18px;backgro
  Share Result
 </a>
 
+<br>
+
+<button id="homeButton" onclick="returnHome()" style="
+display:none;
+margin-top:18px;
+padding:14px 28px;
+border:none;
+border-radius:14px;
+background:rgba(58,45,31,0.85);
+color:white;
+font-size:18px;
+font-family:Georgia,serif;
+font-weight:bold;
+cursor:pointer;
+">
+← Return Home
+</button>
+  
 <p class="note">A new card awaits tomorrow.</p>
 
  </div>
@@ -1071,22 +1089,8 @@ https://www.akashaprana.com`;
  "https://wa.me/?text=" + encodeURIComponent(textoCompartilhar);
 
  shareButton.style.display = "inline-block";
-  cardArea.innerHTML += `
-  <br>
-  <button onclick="returnHome()" style="
-    margin-top:18px;
-    padding:12px 24px;
-    border:none;
-    border-radius:14px;
-    background:rgba(58,45,31,0.85);
-    color:white;
-    font-size:16px;
-    font-family:Georgia,serif;
-    cursor:pointer;
-  ">
-    ← Return Home
-  </button>
-`;
+ document.getElementById("homeButton").style.display = "inline-block";
+  
 }
 
   window.addEventListener("load", function(){
