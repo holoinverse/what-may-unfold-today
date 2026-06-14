@@ -196,18 +196,19 @@ onclick="if(new URLSearchParams(window.location.search).get('mobile') === '1' ||
 </a>
 
 <div id="installBox" onclick="showInstallInstructions()" style="
-  max-width:420px;
-  margin:16px auto 0;
-  padding:14px 18px;
-  border:1px solid #d8c8af;
-  border-radius:16px;
-  background:rgba(255,255,255,0.45);
-  color:#3a2d1f;
-  font-size:15px;
-  line-height:1.4;
-  cursor:pointer;
+display:none;
+max-width:420px;
+margin:16px auto 0;
+padding:14px 18px;
+border:1px solid #d8c8af;
+border-radius:16px;
+background:rgba(255,255,255,0.45);
+color:#3a2d1f;
+font-size:15px;
+line-height:1.4;
+cursor:pointer;
 ">
-  📱 Add this app to your Home Screen
+  📱 Install App <br> <span style="font-size:13px;opacity:0.75;">Add What May Unfold Today to your Home Screen</span>
 </div>
   
 <div id="card"></div>
@@ -1024,11 +1025,28 @@ https://www.akashaprana.com`;
 <script>
 function showInstallInstructions(){
   alert(
-    "To add this app to your phone:\n\n" +
-    "iPhone: tap Share, then Add to Home Screen.\n\n" +
-    "Android: tap the browser menu, then Install App or Add to Home Screen."
+    "Install What May Unfold Today\n\n" +
+    "iPhone:\nTap Share → Add to Home Screen\n\n" +
+    "Android:\nOpen the browser menu → Install App"
   );
 }
+</script>
+
+<script>
+window.addEventListener("load", () => {
+
+  const installBox =
+    document.getElementById("installBox");
+
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches
+    || window.navigator.standalone;
+
+  if(!isStandalone){
+    installBox.style.display = "block";
+  }
+
+});
 </script>
  
 <script>
