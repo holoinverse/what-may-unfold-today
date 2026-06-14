@@ -1010,6 +1010,22 @@ https://www.akashaprana.com`;
  "https://wa.me/?text=" + encodeURIComponent(textoCompartilhar);
 
  shareButton.style.display = "inline-block";
+  cardArea.innerHTML += `
+  <br>
+  <button onclick="returnHome()" style="
+    margin-top:18px;
+    padding:12px 24px;
+    border:none;
+    border-radius:14px;
+    background:rgba(58,45,31,0.85);
+    color:white;
+    font-size:16px;
+    font-family:Georgia,serif;
+    cursor:pointer;
+  ">
+    ← Return Home
+  </button>
+`;
 }
 
   window.addEventListener("load", function(){
@@ -1030,6 +1046,12 @@ function showInstallInstructions(){
 function closeInstallModal(){
   document.getElementById("installModal").style.display = "none";
 }
+
+ function returnHome(){
+  window.location.href =
+    "https://holoinverse.github.io/what-may-unfold-today/";
+}
+ 
 </script>
 
 <script>
