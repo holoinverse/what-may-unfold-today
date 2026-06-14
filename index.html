@@ -1024,11 +1024,11 @@ https://www.akashaprana.com`;
 
 <script>
 function showInstallInstructions(){
-  alert(
-    "Install What May Unfold Today\n\n" +
-    "iPhone:\nTap Share → Add to Home Screen\n\n" +
-    "Android:\nOpen the browser menu → Install App"
-  );
+  document.getElementById("installModal").style.display = "flex";
+}
+
+function closeInstallModal(){
+  document.getElementById("installModal").style.display = "none";
 }
 </script>
 
@@ -1056,6 +1056,67 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
+
+<div id="installModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.45);
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:9999;
+">
+
+  <div style="
+  max-width:500px;
+  width:100%;
+  background:#f8f3ea;
+  border-radius:24px;
+  padding:28px;
+  color:#3a2d1f;
+  box-shadow:0 20px 50px rgba(0,0,0,0.25);
+  text-align:left;
+  ">
+
+    <h2 style="
+    margin-top:0;
+    text-align:center;
+    ">
+      📱 Install App
+    </h2>
+
+    <p>
+      Add this app to your Home Screen for a faster and more app-like experience.
+    </p>
+
+    <p>
+      <strong>iPhone</strong><br>
+      Tap Share → Add to Home Screen
+    </p>
+
+    <p>
+      <strong>Android</strong><br>
+      Open the browser menu → Install App
+    </p>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button onclick="closeInstallModal()" style="
+      background:#3a2d1f;
+      color:white;
+      border:none;
+      border-radius:14px;
+      padding:12px 26px;
+      font-size:16px;
+      cursor:pointer;
+      ">
+        Close
+      </button>
+    </div>
+
+  </div>
+
+</div>
  
 </body>
 </html>
