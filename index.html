@@ -1169,7 +1169,8 @@ function showInstallInstructions(){
   const text = document.getElementById("installInstructionsText");
 
   const isIOS =
-    /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  /iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)
+  && 'ontouchend' in document;
 
   const isAndroid =
     /Android/i.test(navigator.userAgent);
@@ -1192,11 +1193,11 @@ function showInstallInstructions(){
     `;
  } else {
   text.innerHTML = `
-    <p>
-      <strong>Desktop</strong><br>
-      Use your browser menu to install or add this app.
-    </p>
-  `;
+  <p>
+    <strong>Desktop</strong><br>
+    In Chrome or Edge, click the install icon in the address bar or open the browser menu and select <strong>Install App</strong>.
+  </p>
+`;
 }
 
   document.getElementById("installModal").style.display = "flex";
