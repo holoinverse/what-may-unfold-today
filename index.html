@@ -1190,14 +1190,14 @@ function showInstallInstructions(){
         Then select <strong>Install App</strong>.
       </p>
     `;
-  } else {
-    text.innerHTML = `
-      <p>
-        <strong>Install</strong><br>
-        Use your browser menu to add this app to your device.
-      </p>
-    `;
-  }
+ } else {
+  text.innerHTML = `
+    <p>
+      <strong>Desktop</strong><br>
+      Use your browser menu to install or add this app.
+    </p>
+  `;
+}
 
   document.getElementById("installModal").style.display = "flex";
 }
