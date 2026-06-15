@@ -163,6 +163,14 @@ button,
  display:inline-block;
 }
 
+.returnHomeButton{
+  font-size:16px !important;
+  padding:12px 22px !important;
+  width:auto !important;
+  max-width:none !important;
+  border-radius:12px !important;
+}
+
 h1{
   font-size:34px !important;
   line-height:1.05 !important;
@@ -286,15 +294,19 @@ style="display:none;margin-top:12px;padding:20px 42px;border-radius:18px;backgro
 
 <br>
 
-<button id="homeButton" onclick="returnHome()" style="
+<button
+id="homeButton"
+class="returnHomeButton"
+onclick="returnHome()"
+style="
 display:none;
 margin-top:18px;
-padding:14px 28px;
+padding:12px 22px;
 border:none;
 border-radius:14px;
 background:rgba(58,45,31,0.85);
 color:white;
-font-size:18px;
+font-size:16px;
 font-family:Georgia,serif;
 font-weight:bold;
 cursor:pointer;
@@ -1220,9 +1232,10 @@ Open the browser menu (⋮) → Install App
       background:#3a2d1f;
       color:white;
       border:none;
-      border-radius:14px;
-      padding:12px 26px;
-      font-size:16px;
+      border-radius:12px;
+      padding:10px 18px;
+      font-size:14px;
+      opacity:0.85;
       cursor:pointer;
       ">
         Got It
