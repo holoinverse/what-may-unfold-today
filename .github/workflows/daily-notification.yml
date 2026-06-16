@@ -22,5 +22,7 @@ jobs:
             "included_segments":["Total Subscriptions"],
             "headings":{"en":"What May Unfold Today"},
             "contents":{"en":"Your daily card is waiting."},
-            "url":"https://holoinverse.github.io/what-may-unfold-today/"
+            "url":"https://holoinverse.github.io/what-may-unfold-today/",
+            "delayed_option":"timezone",
+            "delivery_time_of_day":"08:00"
           }'
