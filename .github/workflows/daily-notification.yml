@@ -1,0 +1,26 @@
+name: Daily OneSignal Notification
+
+on:
+  schedule:
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send OneSignal Notification
+        run: |
+          curl --request POST \
+          --url https://api.onesignal.com/notifications \
+          --header "Authorization: Key ${{ secrets.ONESIGNAL_API_KEY }}" \
+          --header "accept: application/json" \
+          --header "content-type: application/json" \
+          --data '{
+            "app_id":"${{ secrets.ONESIGNAL_APP_ID }}",
+            "included_segments":["Total Subscriptions"],
+            "headings":{"en":"What May Unfold Today"},
+            "contents":{"en":"Your daily card is waiting."},
+            "url":"https://holoinverse.github.io/what-may-unfold-today/"
+          }'
