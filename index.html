@@ -1240,12 +1240,19 @@ window.addEventListener("load", () => {
   const installBox =
     document.getElementById("installBox");
 
+  const params = new URLSearchParams(window.location.search);
+
   const isStandalone =
     window.matchMedia("(display-mode: standalone)").matches
     || window.navigator.standalone;
 
-  if(!isStandalone){
+  const shouldShowInstall =
+    params.get("mobile") === "1" && !isStandalone;
+
+  if(shouldShowInstall){
     installBox.style.display = "block";
+  } else {
+    installBox.style.display = "none";
   }
 
 });
