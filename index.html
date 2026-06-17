@@ -334,7 +334,9 @@ cursor:pointer;
 ← Back Home
 </button>
   
-<p class="note">A new card awaits tomorrow.</p>
+<p id="dailyNote" class="note">
+  Draw only one card per day.
+</p>
 
  </div>
 
@@ -1151,6 +1153,9 @@ https://www.akashaprana.com`;
 
  shareButton.style.display = "inline-block";
  document.getElementById("homeButton").style.display = "inline-block";
+
+  document.getElementById("dailyNote").innerText =
+  "A new card awaits tomorrow.";
   
 }
 
