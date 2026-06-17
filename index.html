@@ -186,17 +186,22 @@ h1{
   window.OneSignalDeferred = window.OneSignalDeferred || [];
 
   OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "b18fc7c2-0555-4b9b-839c-4da96a677b59",
+  await OneSignal.init({
+    appId: "b18fc7c2-0555-4b9b-839c-4da96a677b59",
 
-      serviceWorkerPath: "/what-may-unfold-today/OneSignalSDKWorker.js",
-      serviceWorkerUpdaterPath: "/what-may-unfold-today/OneSignalSDKUpdaterWorker.js",
+    serviceWorkerPath: "/what-may-unfold-today/OneSignalSDKWorker.js",
+    serviceWorkerUpdaterPath: "/what-may-unfold-today/OneSignalSDKUpdaterWorker.js",
 
-      serviceWorkerParam: {
-        scope: "/what-may-unfold-today/"
-      }
-    });
+    serviceWorkerParam: {
+      scope: "/what-may-unfold-today/"
+    }
   });
+
+  await OneSignal.User.addTags({
+    language: "en"
+  });
+});
+ 
 </script>
  
 </head>
