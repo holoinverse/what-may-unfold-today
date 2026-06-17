@@ -19,7 +19,7 @@ jobs:
           --header "content-type: application/json" \
           --data '{
             "app_id":"${{ secrets.ONESIGNAL_APP_ID }}",
-            "included_segments":["Total Subscriptions"],
+            "included_segments":["English Users"]
             "headings":{"en":"What May Unfold Today"},
             "contents":{"en":"Your daily card is waiting."},
             "url":"https://holoinverse.github.io/what-may-unfold-today/",
