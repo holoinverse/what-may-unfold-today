@@ -13,14 +13,16 @@ jobs:
       - name: Send OneSignal Notification
         run: |
           curl --request POST \
-          --url https://api.onesignal.com/notifications \
-          --header "Authorization: Key ${{ secrets.ONESIGNAL_API_KEY }}" \
-          --header "accept: application/json" \
-          --header "content-type: application/json" \
-          --data '{
-            "app_id":"${{ secrets.ONESIGNAL_APP_ID }}",
-"included_segments":["English users"],
-"headings":{"en":"What May Unfold Today"},
-"contents":{"en":"Your daily card is waiting."},
-"url":"https://holoinverse.github.io/what-may-unfold-today/"
-          }'
+            --url https://api.onesignal.com/notifications \
+            --header "Authorization: Key ${{ secrets.ONESIGNAL_API_KEY }}" \
+            --header "accept: application/json" \
+            --header "content-type: application/json" \
+            --data '{
+              "app_id":"${{ secrets.ONESIGNAL_APP_ID }}",
+              "included_segments":["English users"],
+              "headings":{"en":"What May Unfold Today"},
+              "contents":{"en":"Your daily card is waiting."},
+              "url":"https://holoinverse.github.io/what-may-unfold-today/",
+              "delayed_option":"timezone",
+              "delivery_time_of_day":"08:00"
+            }'
